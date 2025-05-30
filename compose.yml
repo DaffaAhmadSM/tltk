@@ -1,11 +1,11 @@
 services:
   api:
     build:
-      context: ./talentaku-app
+      context: ./tltk
       dockerfile: Dockerfile
     image: laravel
     volumes:
-      - ./talentaku-app:/app
+      - ./tltk:/app
     command: ["php", "artisan", "octane:start", "--host=0.0.0.0", "--port=8080"]
     restart: unless-stopped
     working_dir: /app
@@ -13,18 +13,19 @@ services:
       - 8000:8080
     depends_on:
       - mysql
-  mysql:
-    image: mysql:8.3
-    container_name: dbmysql
+  mariadb: # Changed service name for clarity
+    image: mariadb:11.3 # Changed to a MariaDB image and version
+    container_name: dbmariadb # Changed container name for clarity
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-password}
-      - MYSQL_DATABASE=${DB_DATABASE:-app}
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD:-password} # Changed to MariaDB specific variable
+      - MARIADB_DATABASE=${DB_DATABASE:-app}          # Changed to MariaDB specific variable
     ports:
-      - 127.0.0.1:3306:3306
+      - 3306:3306 # Port remains the same as MariaDB also uses 3306 by default
     volumes:
-      - mysql:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
+
 
 volumes:
-  mysql:
+  mariadb_data:
     driver: local
