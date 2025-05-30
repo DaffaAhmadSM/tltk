@@ -36,7 +36,7 @@ class AdministratorClassroomController
     }
     public function getDatatable(){
         $jsonData =  $this->classroomService->getDatatables();
-        echo $jsonData;
+        return $jsonData;
     }
     public function store(Request $request)
     {
