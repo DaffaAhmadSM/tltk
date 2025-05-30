@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: ./talentaku-app
+      dockerfile: Dockerfile
+    image: laravel
+    volumes:
+      - ./talentaku-app:/app
+    command: ["php", "artisan", "octane:start", "--host=0.0.0.0", "--port=8080"]
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - 8000:8080
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8.3
+    container_name: dbmysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-password}
+      - MYSQL_DATABASE=${DB_DATABASE:-app}
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:
+    driver: local
