@@ -194,7 +194,7 @@ class AdministratorStudentController
 //        $groupRole = isset($request->groupRole) ? $request->groupRole : "";
 
         $jsonData = $this->studentService->getDatatables();
-        echo $jsonData;
+        return $jsonData;
     }
 
     public function datatablesStudentsReport(Request $request)
@@ -203,7 +203,7 @@ class AdministratorStudentController
         $date = isset($request->date) ? $request->date : null;
 
         $jsonData = $this->studentReportService->getDatatables($S_ID, );
-        echo $jsonData;
+        return $jsonData;
     }
     public function restoreStudent($id)
     {

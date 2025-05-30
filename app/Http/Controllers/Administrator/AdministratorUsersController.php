@@ -132,7 +132,7 @@ class AdministratorUsersController extends Controller
         $groupRole = isset($request->groupRole) ? $request->groupRole : "";
 
         $jsonData = $this->userService->getDatatables($groupRole);
-        echo $jsonData;
+        return $jsonData;
     }
 
     public function delete($U_ID)
