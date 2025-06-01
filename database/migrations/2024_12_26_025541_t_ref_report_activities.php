@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('SRA_ID');
             $table->string('ACTIVITY_TYPE',80)->default('-');
             $table->string('ACTIVITY_NAME', 100)->default('-');
-            $table->enum('STATUS', ['MUNCUL', 'KURANG', 'BELUM MUNCUL'])->default('BELUM MUNCUL');
+            $table->string('STATUS')->default('BELUM MUNCUL');
             $table->timestamp('SYS_CREATE_AT')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('SYS_CREATE_USER', 100)->default('-');
             $table->timestamp('SYS_UPDATE_AT')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
