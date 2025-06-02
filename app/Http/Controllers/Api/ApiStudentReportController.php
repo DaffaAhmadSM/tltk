@@ -48,7 +48,7 @@ class ApiStudentReportController
             'ACTIVITIES' => 'nullable|array',
             'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string|max:255',
             'ACTIVITIES.*.REF_ACTIVITIES' => 'nullable|array',
-            'ACTIVITIES.*.REF_ACTIVITIES.*.STATUS' => 'nullable|string|in:MUNCUL,KURANG,BELUM MUNCUL',
+            'ACTIVITIES.*.REF_ACTIVITIES.*.STATUS' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -80,7 +80,7 @@ class ApiStudentReportController
             'ACTIVITIES' => 'nullable|array',
             'ACTIVITIES.*.ACTIVITY_TYPE' => 'required_with:ACTIVITIES|string',
             'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string',
-            'ACTIVITIES.*.STATUS' => 'required_with:ACTIVITIES|in:MUNCUL,KURANG,BELUM MUNCUL',
+            'ACTIVITIES.*.STATUS' => 'required_with:ACTIVITIES|string',
         ]);
         if ($validator->fails()) {
             return Helper::composeReply('ERROR', 'Validation failed', $validator->errors()->all(), 422);
