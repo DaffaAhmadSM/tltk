@@ -163,7 +163,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="/" class="text-decoration-none text-white">
-            <img src="{{URL::asset('storage/uploads/images/logo-talentaku.png')}}" alt="Logo Perusahaan" class="login-logo">
+            <img src="{{URL::asset('storage/uploads/images/logo-talentaku.png')}}" alt="Logo Perusahaan" width="80">
             <text x="50" y="90" font-size="90" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold">TALENTAKU</text>
         </a>
     </div>
