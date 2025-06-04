@@ -98,20 +98,20 @@
 
                         <!-- Student Name -->
                         <div class="mb-3">
-                            <label for="studentName" class="form-label">Student Name</label>
+                            <label for="studentName" class="form-label">Student Name <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <input type="text" id="studentName" name="STUDENT_NAME" class="form-control" placeholder="Enter student name" required>
                         </div>
 
                         <!-- Roll Number -->
                         <div class="mb-3">
-                            <label for="rollNumber" class="form-label">Roll Number</label>
-                            <input type="text" id="rollNumber" name="STUDENT_ROLL_NUMBER" class="form-control" placeholder="Enter roll number">
+                            <label for="rollNumber" class="form-label">Roll Number <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="text" id="rollNumber" name="STUDENT_ROLL_NUMBER" class="form-control" placeholder="Enter roll number" required>
                         </div>
 
                         <!-- Parent Selection -->
                         <!-- Parent Selection -->
                         <div class="mb-3">
-                            <label for="parent" class="form-label">Parent</label>
+                            <label for="parent" class="form-label">Parent <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="parent" name="STUDENT_PARENT_U_ID" class="form-control " required>
                                 <option value="" disabled selected>Select Parent</option>
                                 @foreach($unusedParents as $parent)
@@ -133,7 +133,7 @@
 
                         <!-- Gender -->
                         <div class="mb-3">
-                            <label for="sex" class="form-label">Gender</label>
+                            <label for="sex" class="form-label">Gender <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="sex" name="STUDENT_SEX" class="form-control" required>
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="male" {{ old('STUDENT_SEX', $student->STUDENT_SEX ?? '') == 'male' ? 'selected' : '' }}>Male</option>
@@ -143,7 +143,7 @@
 
                         <!-- Classroom -->
                         <div class="mb-3">
-                            <label for="classroom" class="form-label">Classroom</label>
+                            <label for="classroom" class="form-label">Classroom <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="classroom" name="CLSRM_ID" class="form-control " required>
                                 <option value="" disabled selected>Select Classroom</option>
                                 @foreach($classrooms as $classroom)

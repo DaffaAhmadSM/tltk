@@ -82,11 +82,11 @@
                 <form id="createUserForm" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="username" class="form-label">User  Name</label>
+                            <label for="username" class="form-label">User  Name <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <input type="text" id="username" name="U_NAME" class="form-control" placeholder="Enter user name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="role" class="form-label">User  Role</label>
+                            <label for="role" class="form-label">User  Role <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="role" name="UR_ID" class="form-control select2" required>
                                 <option value="" disabled selected>Select Role</option>
                                 @foreach($groupedRole as $role)
@@ -95,7 +95,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="sex" class="form-label">User  Sex</label>
+                            <label for="sex" class="form-label">User  Sex <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="sex" name="U_SEX" class="form-control select2" required>
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
@@ -103,16 +103,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="U_EMAIL" class="form-control" placeholder="Enter email">
+                            <label for="email" class="form-label">Email <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="email" id="email" name="U_EMAIL" class="form-control" placeholder="Enter email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" id="phone" name="U_PHONE" class="form-control" placeholder="Enter phone number">
+                            <label for="phone" class="form-label">Phone <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="text" id="phone" name="U_PHONE" class="form-control" placeholder="Enter phone number" required>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <textarea id="address" name="U_ADDRESS" class="form-control" rows="3" placeholder="Enter address"></textarea>
+                            <label for="address" class="form-label">Address <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <textarea id="address" name="U_ADDRESS" class="form-control" rows="3" placeholder="Enter address" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
@@ -120,7 +120,7 @@
                             <div id="imagePreview"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <div class="input-group">
                                 <input type="password" id="password" name="U_PASSWORD" class="form-control" required>
                                 <button type="button" id="togglePassword" class="btn btn-outline-secondary">
