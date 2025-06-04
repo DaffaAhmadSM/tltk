@@ -29,7 +29,7 @@ class userRoleSeeder extends Seeder
 
         Users::create([
             'U_NAME' => 'admin',
-            'U_PASSWORD_HASH' => Hash::make(1 . "admin123"),
+            'U_PASSWORD_HASH' => Hash::make( "1admin123"),
             'UR_ID' => 1, // RM_ADMINISTRATOR
         ]);
     }
