@@ -127,13 +127,13 @@
 
                         <!-- Classroom Name -->
                         <div class="mb-3">
-                            <label for="EDIT_CLSRM_NAME" class="form-label">Classroom Name</label>
+                            <label for="EDIT_CLSRM_NAME" class="form-label">Classroom Name <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <input type="text" id="EDIT_CLSRM_NAME" name="CLSRM_NAME" class="form-control" placeholder="Enter classroom name" required>
                         </div>
 
                         <!-- Classroom Type -->
                         <div class="mb-3">
-                            <label for="EDIT_CLSRM_TYPE" class="form-label">Classroom Type</label>
+                            <label for="EDIT_CLSRM_TYPE" class="form-label">Classroom Type <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="EDIT_CLSRM_TYPE" name="CLSRM_TYPE" class="form-control" required>
                                 <option value="" disabled selected>Select classroom type</option>
                                 <option value="KB">KB</option>
@@ -143,14 +143,14 @@
 
                         <!-- Classroom Grade -->
                         <div class="mb-3">
-                            <label for="EDIT_CLSRM_GRADE" class="form-label">Classroom Grade</label>
+                            <label for="EDIT_CLSRM_GRADE" class="form-label">Classroom Grade <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <input type="text" id="EDIT_CLSRM_GRADE" name="CLSRM_GRADE" class="form-control" placeholder="Enter classroom grade" required>
                         </div>
 
                         <!-- Description -->
                         <div class="mb-3">
-                            <label for="EDIT_CLSRM_DESCRIPTION" class="form-label">Description</label>
-                            <textarea id="EDIT_CLSRM_DESCRIPTION" name="CLSRM_DESCRIPTION" class="form-control" placeholder="Enter classroom description"></textarea>
+                            <label for="EDIT_CLSRM_DESCRIPTION" class="form-label">Description <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <textarea id="EDIT_CLSRM_DESCRIPTION" name="CLSRM_DESCRIPTION" class="form-control" placeholder="Enter classroom description" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

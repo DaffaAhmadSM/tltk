@@ -151,11 +151,11 @@
                         <input type="hidden" id="EDIT_U_ID" name="U_ID"> <!-- Hidden field for editing -->
 
                         <div class="mb-3">
-                            <label for="EDIT_USERNAME" class="form-label">User  Name</label>
-                            <input type="text" id="EDIT_USERNAME" name="U_NAME" class="form-control" placeholder="Enter user name">
+                            <label for="EDIT_USERNAME" class="form-label">User  Name <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="text" id="EDIT_USERNAME" name="U_NAME" class="form-control" placeholder="Enter user name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="EDIT_ROLE" class="form-label">User  Role</label>
+                            <label for="EDIT_ROLE" class="form-label">User  Role <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="EDIT_ROLE" name="UR_ID" class="form-control select2">
                                 <option value="" disabled selected>Select Role</option>
                                 @foreach($groupedRole as $role)
@@ -164,7 +164,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="EDIT_SEX" class="form-label">User  Sex</label>
+                            <label for="EDIT_SEX" class="form-label">User  Sex <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
                             <select id="EDIT_SEX" name="U_SEX" class="form-control select2">
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
@@ -172,16 +172,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="EDIT_EMAIL" class="form-label">Email</label>
-                            <input type="email" id="EDIT_EMAIL" name="U_EMAIL" class="form-control" placeholder="Enter email">
+                            <label for="EDIT_EMAIL" class="form-label">Email <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="email" id="EDIT_EMAIL" name="U_EMAIL" class="form-control" placeholder="Enter email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="EDIT_PHONE" class="form-label">Phone</label>
-                            <input type="text" id="EDIT_PHONE" name="U_PHONE" class="form-control" placeholder="Enter phone number">
+                            <label for="EDIT_PHONE" class="form-label">Phone <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <input type="text" id="EDIT_PHONE" name="U_PHONE" class="form-control" placeholder="Enter phone number" required>
                         </div>
                         <div class="mb-3">
-                            <label for="EDIT_ADDRESS" class="form-label">Address</label>
-                            <textarea id="EDIT_ADDRESS" name="U_ADDRESS" class="form-control" rows="3" placeholder="Enter address"></textarea>
+                            <label for="EDIT_ADDRESS" class="form-label">Address <svg width="8px" height="8px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff060d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M19 7L5 17M5 7L19 17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></label>
+                            <textarea id="EDIT_ADDRESS" name="U_ADDRESS" class="form-control" rows="3" placeholder="Enter address" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="U_IMAGE_PROFILE" class="form-label">Image</label>
