@@ -41,7 +41,7 @@ class ApiUserController extends Controller
             return Helper::composeReply('ERROR', 'User not found', null);
         }
 
-            $baseUrl = URL::to('/');
+        $baseUrl = URL::to('/');
         // Jika role adalah RM_GUARDIAN
         if ($user->role->ROLE_NAME === 'RM_GUARDIAN') {
             Log::info('User is RM_GUARDIAN: ' . $token);
@@ -58,7 +58,7 @@ class ApiUserController extends Controller
                     'u.U_SEX',
                     'u.U_EMAIL',
                     'u.U_ADDRESS',
-                    DB::raw("IF(u.U_IMAGE_PROFILE IS NOT NULL, CONCAT('$baseUrl/api/image/', u.U_IMAGE_PROFILE), NULL) as U_IMAGE_PROFILE"),
+                    DB::raw("IF(u.U_IMAGE_PROFILE IS NOT NULL, CONCAT('$baseUrl/api/image/', u.U_IMAGE_PROFILE), CONCAT('$baseUrl/api/image/defaultprofile.png')) as U_IMAGE_PROFILE"),
                     'u.U_PHONE',
                     'ur.ROLE_NAME',
                     DB::raw('COALESCE(s.STUDENT_NAME, "N/A") as STUDENT_NAME'),
@@ -84,7 +84,7 @@ class ApiUserController extends Controller
                 'u.U_SEX as U_SEX',
                 'u.U_EMAIL as U_EMAIL',
                 'u.U_ADDRESS as U_ADDRESS',
-                DB::raw("IF(u.U_IMAGE_PROFILE IS NOT NULL, CONCAT('$baseUrl/api/image/', u.U_IMAGE_PROFILE), NULL) as U_IMAGE_PROFILE"),
+                DB::raw("IF(u.U_IMAGE_PROFILE IS NOT NULL, CONCAT('$baseUrl/api/image/', u.U_IMAGE_PROFILE), CONCAT('$baseUrl/api/image/defaultprofile.png')) as U_IMAGE_PROFILE"),
                 'u.U_PHONE as U_PHONE',
                 'ur.ROLE_NAME as ROLE_NAME',
             ])
@@ -98,8 +98,9 @@ class ApiUserController extends Controller
         return Helper::composeReply('SUCCESS', 'Success Get User By U_ID', $data);
     }
 
-    public function getUserByToken($token){
+    public function getUserByToken($token)
+    {
         $user = $this->userService->getUserByLoginToken($token);
-        return Helper::composeReply('SUCCESS','Success Get User By U_ID', $user);
+        return Helper::composeReply('SUCCESS', 'Success Get User By U_ID', $user);
     }
 }
