@@ -13,28 +13,30 @@ class ApiStudentReportController
     protected $studentReportService;
     protected $userData;
 
-    public function __construct(StudentReportService $studentReportService,Request $request)
+    public function __construct(StudentReportService $studentReportService, Request $request)
     {
         $this->studentReportService = $studentReportService;
         $this->userData = $request->{"USER_DATA"};
     }
-    public function getStudentReport(Request $request){
+    public function getStudentReport(Request $request)
+    {
         $studentId = $request->query('studentId');
         $teacherId = $request->query('teacherId');
         $parentId = $request->query('parentId');
         $date = $request->query('date');
         try {
-        return Helper::composeReply('SUCCESS','Success get report',$this->studentReportService->getAllReport($studentId, $teacherId, $parentId, $date));
-        }catch (\Exception $exception){
-            return Helper::composeReply('ERROR','ERROR get report',$exception->getMessage(),500);
+            return Helper::composeReply('SUCCESS', 'Success get report', $this->studentReportService->getAllReport($studentId, $teacherId, $parentId, $date));
+        } catch (\Exception $exception) {
+            return Helper::composeReply('ERROR', 'ERROR get report', $exception->getMessage(), 500);
         }
     }
 
-    public function getStudentReportDetailById(Request $request, $id){
+    public function getStudentReportDetailById(Request $request, $id)
+    {
         try {
-            return Helper::composeReply('SUCCESS','Success get detail report',$this->studentReportService->getReportById($id));
-        }catch (\Exception $exception){
-            return Helper::composeReply('ERROR','ERROR get detail report',$exception->getMessage(),500);
+            return Helper::composeReply('SUCCESS', 'Success get detail report', $this->studentReportService->getReportById($id));
+        } catch (\Exception $exception) {
+            return Helper::composeReply('ERROR', 'ERROR get detail report', $exception->getMessage(), 500);
         }
     }
     public function createStudentReport(Request $request)
@@ -46,7 +48,7 @@ class ApiStudentReportController
             'SR_CONTENT' => 'required|string',
             'SR_DATE' => 'required|date',
             'ACTIVITIES' => 'nullable|array',
-            'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string|max:255',
+            'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string|max:2000',
             'ACTIVITIES.*.REF_ACTIVITIES' => 'nullable|array',
             'ACTIVITIES.*.REF_ACTIVITIES.*.STATUS' => 'nullable|string',
         ]);
