@@ -13,7 +13,7 @@ Route::group(["prefix" => "backend/student", "middleware" => ["auth.web"]], func
     Route::post('/{id}/update', [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'update']);
     Route::post('/{id}/delete', [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'delete']);
     Route::post('/{id}/restore', [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'restoreStudent']);
-
+    
     Route::post('/{id}/delete/report', [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'deleteStudentReport']);
     Route::match(["get", "post"], "datatables", [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'datatablesStudents']);
 

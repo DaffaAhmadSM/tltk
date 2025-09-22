@@ -44,11 +44,11 @@ class ApiStudentReportController
         $validator = Validator::make($request->all(), [
             'S_ID' => 'required|exists:t_students,S_ID',
             'U_ID' => 'required|exists:_users,U_ID',
-            'SR_TITLE' => 'required|string|max:1000',
+            'SR_TITLE' => 'required|string',
             'SR_CONTENT' => 'required|string',
             'SR_DATE' => 'required|date',
             'ACTIVITIES' => 'nullable|array',
-            'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string|max:2000',
+            'ACTIVITIES.*.ACTIVITY_NAME' => 'required_with:ACTIVITIES|string',
             'ACTIVITIES.*.REF_ACTIVITIES' => 'nullable|array',
             'ACTIVITIES.*.REF_ACTIVITIES.*.STATUS' => 'nullable|string',
         ]);
@@ -77,7 +77,7 @@ class ApiStudentReportController
     public function updateStudentReport(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'SR_CONTENT' => 'sometimes|required|string|max:1000',
+            'SR_CONTENT' => 'sometimes|required|string',
             'SR_DATE' => 'sometimes|required|date',
             'ACTIVITIES' => 'nullable|array',
             'ACTIVITIES.*.ACTIVITY_TYPE' => 'required_with:ACTIVITIES|string',
