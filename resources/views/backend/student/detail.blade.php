@@ -717,6 +717,7 @@
                             activity.REF_ACTIVITIES.forEach(ref => {
                                 let statusClass = '';
                                 let statusIcon = '';
+                                let badgeClass = '';
                                 let activityTypeHtml = '';  // Variable to hold activity type HTML
 
                                 // Check if ACTIVITY_TYPE is not null or empty
@@ -849,6 +850,7 @@
                             activity.REF_ACTIVITIES.forEach(ref => {
                                 let statusClass = '';
                                 let statusIcon = '';
+                                let badgeClass = '';
                                 let activityTypeHtml = '';  // Variable to hold activity type HTML
 
                                 // Check if ACTIVITY_TYPE is not null or empty
