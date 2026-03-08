@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\StudentReportRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use App\Models\t_student_reports;
 
 class StudentReportService
 {
@@ -85,8 +86,24 @@ class StudentReportService
 //            throw new \Exception('Failed to update report');
 //        }
 //    }
-    public function deleteReport($student){
+    public function getReportsByUserId($userId, $date = null)
+    {
+        return $this->studentReportRepository->customGetStudentReports($date, null, $userId, null);
+    }
 
+    public function deleteReport($reportId, $userId)
+    {
+        $report = t_student_reports::where('SR_ID', $reportId)->first();
+
+        if (!$report) {
+            throw new \Exception('Report not found');
+        }
+
+        if ($report->U_ID != $userId) {
+            throw new \Exception('Hapus laporan tidak diizinkan', 403);
+        }
+
+        return $this->studentReportRepository->deleteStudentReport($reportId);
     }
     public function getDatatables($S_ID, $date = null)
     {

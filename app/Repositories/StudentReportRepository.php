@@ -76,19 +76,19 @@ class StudentReportRepository implements StudentReportRepositoryInterface
                 'SR_CONTENT' => $report->SR_CONTENT,
                 'SR_DATE' => $report->SR_DATE,
                 'FORMATTED_DATE' => $report->SR_DATE ? \Carbon\Carbon::parse($report->SR_DATE)->format('d-F-Y') : null,
-                'STUDENT' => [
+                'STUDENT' => $report->student ? [
                     'S_ID' => $report->student->S_ID,
                     'STUDENT_NAME' => $report->student->STUDENT_NAME,
                     'STUDENT_PARENT_U_ID' => $report->student->STUDENT_PARENT_U_ID,
-                    'PARENT' => [
+                    'PARENT' => $report->student->parent ? [
                         'U_ID' => $report->student->parent->U_ID,
                         'STUDENT_PARENT_NAME' => $report->student->parent->STUDENT_PARENT_NAME,
-                    ],
-                ],
-                'TEACHER' => [
+                    ] : null,
+                ] : null,
+                'TEACHER' => $report->teacher ? [
                     'U_ID' => $report->teacher->U_ID,
                     'TEACHER_NAME' => $report->teacher->TEACHER_NAME,
-                ],
+                ] : null,
                 'ACTIVITIES' => $report->activities->map(function ($activity) {
                     return [
 //                        'SRA_ID' => $activity->SRA_ID,
@@ -167,19 +167,19 @@ class StudentReportRepository implements StudentReportRepositoryInterface
             'SR_CONTENT' => $report->SR_CONTENT,
             'SR_DATE' => $report->SR_DATE,
             'FORMATTED_DATE' => $report->SR_DATE ? \Carbon\Carbon::parse($report->SR_DATE)->format('d-F-Y') : null,
-            'STUDENT' => [
+            'STUDENT' => $report->student ? [
                 'S_ID' => $report->student->S_ID,
                 'STUDENT_NAME' => $report->student->STUDENT_NAME,
                 'STUDENT_PARENT_U_ID' => $report->student->STUDENT_PARENT_U_ID,
-                'PARENT' => [
+                'PARENT' => $report->student->parent ? [
                     'U_ID' => $report->student->parent->U_ID,
                     'STUDENT_PARENT_NAME' => $report->student->parent->STUDENT_PARENT_NAME,
-                ],
-            ],
-            'TEACHER' => [
+                ] : null,
+            ] : null,
+            'TEACHER' => $report->teacher ? [
                 'U_ID' => $report->teacher->U_ID,
                 'TEACHER_NAME' => $report->teacher->TEACHER_NAME,
-            ],
+            ] : null,
             'ACTIVITIES' => $report->activities->map(function ($activity) {
                 return [
                     'ACTIVITY_NAME' => $activity->ACTIVITY_NAME,
@@ -260,7 +260,22 @@ class StudentReportRepository implements StudentReportRepositoryInterface
 
     public function deleteStudentReport($id)
     {
-        // TODO: Implement deleteStudentReport() method.
+        $report = t_student_reports::where('SR_ID', $id)->first();
+        if (!$report) {
+            throw new \Exception('Report not found');
+        }
+
+        // Delete ref activities for each activity
+        $activities = t_student_report_activities::where('SR_ID', $id)->get();
+        foreach ($activities as $activity) {
+            t_ref_report_activities::where('SRA_ID', $activity->SRA_ID)->delete();
+        }
+
+        // Delete activities
+        t_student_report_activities::where('SR_ID', $id)->delete();
+
+        // Delete the report itself
+        return $report->delete();
     }
 
     public function getAllStudentReportByStudentId($id, $date = null)

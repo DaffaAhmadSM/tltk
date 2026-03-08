@@ -24,6 +24,7 @@ class ApiStudentReportController
         $teacherId = $request->query('teacherId');
         $parentId = $request->query('parentId');
         $date = $request->query('date');
+
         try {
             return Helper::composeReply('SUCCESS', 'Success get report', $this->studentReportService->getAllReport($studentId, $teacherId, $parentId, $date));
         } catch (\Exception $exception) {
@@ -94,6 +95,30 @@ class ApiStudentReportController
             return Helper::composeReply('SUCCESS', 'Student report updated successfully', $updatedReport, 200);
         } catch (\Exception $e) {
             return Helper::composeReply('ERROR', 'Failed to update report', $e->getMessage(), 500);
+        }
+    }
+
+    public function getMyReports(Request $request)
+    {
+        $userId = $this->userData->{"U_ID"};
+        $date = $request->query('date');
+        try {
+            return Helper::composeReply('SUCCESS', 'Success get my reports', $this->studentReportService->getReportsByUserId($userId, $date));
+        } catch (\Exception $exception) {
+            return Helper::composeReply('ERROR', 'ERROR get my reports', $exception->getMessage(), 500);
+        }
+    }
+
+    public function deleteStudentReport(Request $request, $id)
+    {
+        $userId = $this->userData->{"U_ID"};
+        try {
+            $this->studentReportService->deleteReport($id, $userId);
+            return Helper::composeReply('SUCCESS', 'Student report deleted successfully', null, 200);
+        } catch (\Exception $e) {
+            $statusCode = $e->getCode() === 403 ? 403 : 500;
+            $message = $e->getCode() === 403 ? 'Unauthorized' : 'Failed to delete report';
+            return Helper::composeReply('ERROR', $message, $e->getMessage(), $statusCode);
         }
     }
 }
