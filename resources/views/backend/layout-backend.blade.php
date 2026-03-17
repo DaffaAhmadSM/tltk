@@ -156,6 +156,7 @@
             }
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
@@ -336,7 +337,14 @@
     }
 </script>
 
+<!-- Add Tailwind CSS in <head> if you don't have it globally (or compile it via npm) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Add this right before </body> -->
+<livewire:chat :floating="true" />
+@livewireScripts
 </body>
+
 
 <div id="print">
 </div>

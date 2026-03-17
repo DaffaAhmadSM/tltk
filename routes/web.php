@@ -10,6 +10,23 @@ Route::get('/', function () {
     return redirect('backend/auth');
 })->name('public');
 
+Route::get('/chat', function () {
+    return \Illuminate\Support\Facades\Blade::render(<<<'HTML'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chat</title>
+    @livewireStyles
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <livewire:chat />
+    @livewireScripts
+</body>
+</html>
+HTML);
+})->middleware('auth.web');
+
 Route::match(["get", "post"], "token", function() {
     return Helper::composeReply("SUCCESS", "Token", csrf_token());
 });
