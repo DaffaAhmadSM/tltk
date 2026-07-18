@@ -18,6 +18,8 @@ class t_student_reports extends Model
         'SR_CONTENT',
         'SR_DATE',
         'SR_IS_READ',
+        'review_star',
+        'review',
     ];
     protected $casts = [
         'SR_DATE' => 'datetime',

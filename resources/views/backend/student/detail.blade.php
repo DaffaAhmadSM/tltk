@@ -636,150 +636,17 @@
                         // Convert links in content to clickable links
                         const content = data.SR_CONTENT.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="text-title">$1</a>');
 
-                        // Prepare the modal content
-                        let modalContent = `
-                    <div class="modal fade" id="detailReportModal" tabindex="-1">
-                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header bg-title text-white">
-                                    <h5 class="modal-title">
-                                        <i class="fas fa-file-alt me-2"></i> ${data.SR_TITLE}
-                                    </h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="card mb-3 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <div>
-                                                    <h6 class="text-title mb-1">
-                                                        <i class="fas fa-calendar me-2"></i>Report Date
-                                                    </h6>
-                                                    <p class="mb-0">${data.FORMATTED_DATE}</p>
-                                                </div>
-                                                <div>
-                                                    <button onclick="deleteReport(${data.SR_ID})" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash-alt me-1"></i> Delete Report
-                                                    </button>
-                                                    <button onclick="window.print()" class="btn btn-primary btn-sm ms-2">
-                                                        <i class="fas fa-print me-1"></i> Print
-                                                    </button>
-                                                </div>
-                                            </div>
+                        // Fetch rendered modal HTML from Blade partial
+                        $.get("{{ url('/student-report/') }}" + '/' + data.SR_ID + "/detail-modal", function(modalHtml) {
+                            // Remove existing modal if any
+                            $('#detailReportModal').remove();
 
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <h6 class="text-title mb-1">
-                                                        <i class="fas fa-user-graduate me-2"></i>Student
-                                                    </h6>
-                                                    <p class="mb-0">${data.STUDENT.STUDENT_NAME}</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h6 class="text-title mb-1">
-                                                        <i class="fas fa-users me-2"></i>Parent
-                                                    </h6>
-                                                    <p class="mb-0">${data.STUDENT.PARENT.STUDENT_PARENT_NAME}</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h6 class="text-title mb-1">
-                                                        <i class="fas fa-chalkboard-teacher me-2"></i>Teacher
-                                                    </h6>
-                                                    <p class="mb-0">${data.TEACHER.TEACHER_NAME}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            // Add the new modal to the body
+                            $('body').append(modalHtml);
 
-                                    <div class="card mb-3 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <h6 class="text-title mb-3">
-                                                <i class="fas fa-clipboard-list me-2"></i>Report Content
-                                            </h6>
-                                            <p class="mb-0">${content}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="activities-container">`;
-
-                        data.ACTIVITIES.forEach(activity => {
-                            modalContent += `
-                        <div class="card mb-3 border-0 shadow-sm activity-card">
-                            <div class="card-header bg-light">
-                                <h6 class="mb-0 text-title">
-                                    <i class="fas fa-star me-2"></i>${activity.ACTIVITY_NAME}
-                                </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-borderless">
-                                        <tbody>`;
-
-                            activity.REF_ACTIVITIES.forEach(ref => {
-                                let statusClass = '';
-                                let statusIcon = '';
-                                let badgeClass = '';
-                                let activityTypeHtml = '';  // Variable to hold activity type HTML
-
-                                // Check if ACTIVITY_TYPE is not null or empty
-                                if (ref.ACTIVITY_TYPE) {
-                                    activityTypeHtml = `
-                                <div class="activity-type-header">
-                                    <span class="badge bg-info p-2 text-white rounded-3">${ref.ACTIVITY_TYPE}</span>
-                                </div>`;
-                                }
-                                switch(ref.STATUS) {
-                                    case 'MUNCUL':
-                                        statusClass = 'text-success';
-                                        statusIcon = 'check-circle';
-                                        badgeClass = 'badge bg-success';
-                                        break;
-                                    case 'KURANG':
-                                        statusClass = 'text-warning';
-                                        statusIcon = 'exclamation-circle';
-                                        badgeClass = 'badge bg-warning';
-                                        break;
-                                    case 'BELUM MUNCUL':
-                                        statusClass = 'text-danger';
-                                        statusIcon = 'times-circle';
-                                        badgeClass = 'badge bg-danger';
-                                        break;
-                                }
-
-
-                                modalContent += `
-                            <tr>
-                                <td>
-                                    ${activityTypeHtml}
-                                    <i class="fas fa-angle-right text-primary me-2"></i>
-                                    ${ref.ACTIVITY_NAME}
-
-                                </td>
-                                <td class="text-end">
-                                    <span class="${badgeClass}"><i class="fas fa-${statusIcon} me-1"></i>${ref.STATUS}</span>
-                                </td>
-                            </tr>`;
-                            });
-
-                            modalContent += `
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>`;
+                            // Show the modal
+                            $('#detailReportModal').modal('show');
                         });
-
-                        modalContent += `
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-
-                        // Remove existing modal if any
-                        $('#detailReportModal').remove();
-
-                        // Add the new modal to the body
-                        $('body').append(modalContent);
 
                         $('#print').html(`
                             <div class="print-content">
@@ -904,8 +771,6 @@
                                 </div>
                             </div>`);
 
-                        // Show the modal
-                        $('#detailReportModal').modal('show');
                     } else {
                         toastr.error('Failed to load report details');
                     }

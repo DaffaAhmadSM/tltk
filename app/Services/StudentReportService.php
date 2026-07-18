@@ -67,25 +67,25 @@ class StudentReportService
         }
     }
 
-//    public function updateReport($data, $reportId){
-//        try {
-//            $this->studentReportRepository->updateStudentReport($data, $reportId);
-//            if (isset($data['ACTIVITIES']) && is_array($data['ACTIVITIES'])) {
-//                foreach ($data['ACTIVITIES'] as $activityData) {
-//                    $activityData['SYS_UPDATE_USER'] = $data['SYS_UPDATE_USER'];
-//                    if (isset($activityData['SRA_ID'])) {
-//                        $this->studentReportRepository->updateStudentReportActivity($activityData, $activityData['SRA_ID']);
-//                    } else {
-//                        $activityData['SR_ID'] = $reportId;
-//                        $this->studentReportRepository->createStudentReportActivity($activityData);
-//                    }
-//                }
-//            }
-//            return $this->getReportById($reportId);
-//        } catch (\Exception $e) {
-//            throw new \Exception('Failed to update report');
-//        }
-//    }
+    public function updateReport($data, $reportId){
+        try {
+            $this->studentReportRepository->updateStudentReport($data, $reportId);
+            if (isset($data['ACTIVITIES']) && is_array($data['ACTIVITIES'])) {
+                foreach ($data['ACTIVITIES'] as $activityData) {
+                    $activityData['SYS_UPDATE_USER'] = $data['SYS_UPDATE_USER'];
+                    if (isset($activityData['SRA_ID'])) {
+                        $this->studentReportRepository->updateStudentReportActivity($activityData, $activityData['SRA_ID']);
+                    } else {
+                        $activityData['SR_ID'] = $reportId;
+                        $this->studentReportRepository->createStudentReportActivity($activityData);
+                    }
+                }
+            }
+            return $this->getReportById($reportId);
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to update report');
+        }
+    }
     public function getReportsByUserId($userId, $date = null)
     {
         return $this->studentReportRepository->customGetStudentReports($date, null, $userId, null);

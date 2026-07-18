@@ -249,4 +249,17 @@ class AdministratorStudentController
         }
     }
 
+    public function reportDetailModal($id)
+    {
+        $report = $this->studentReportService->getReportById($id);
+        if (!$report) {
+            return response('Report not found', 404);
+        }
+        // Convert URLs to clickable links (same as JS did)
+        $content = preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank" class="text-title">$1</a>', $report['SR_CONTENT']);
+        $data = json_decode(json_encode($report));
+        // return $data;
+        return view('backend.student.report.detail', ['data' => $data, 'content' => $content]);
+    }
+
 }

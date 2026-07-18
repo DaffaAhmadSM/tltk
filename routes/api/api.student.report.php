@@ -10,4 +10,8 @@ Route::group(["prefix" => "student-report", "middleware" => ["auth.api"]], funct
     Route::post("/create", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'createStudentReport']);
     Route::post("/{id}/update", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'updateStudentReport']);
     Route::delete("/{id}/delete", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'deleteStudentReport']);
+
+
+
+    Route::post("/{id}/review", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'reviewStudentReport']);
 });

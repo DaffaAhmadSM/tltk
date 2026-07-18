@@ -17,12 +17,17 @@
                                 </h6>
                                 <p class="mb-0">{{ $data->FORMATTED_DATE }}</p>
                             </div>
-                            <button onclick="deleteReport({{ $data->SR_ID }})" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt me-1"></i> Delete Report
-                            </button>
-                        </div>
+                            <div>
+                                <button onclick="deleteReport({{ $data->SR_ID }})" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt me-1"></i> Delete Report
+                                </button>
+                                <button onclick="window.print()" class="btn btn-primary btn-sm ms-2">
+                                    <i class="fas fa-print me-1"></i> Print
+                                </button>
+                            </div>
 
-                        <div class="row g-3">
+                        </div>
+                        <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <h6 class="text-title mb-1">
                                     <i class="fas fa-user-graduate me-2"></i>Student
@@ -42,10 +47,37 @@
                                 <p class="mb-0">{{ $data->TEACHER->TEACHER_NAME }}</p>
                             </div>
                         </div>
+
+                        <div>
+                            <div class="col-md-6">
+                                <h6 class="text-title mb-1">
+                                    <i class="fas fa-"></i>Rating
+                                </h6>
+                                @if($data->REVIEW_STAR != NULL)
+                                    @for($i = 0; $i < $data->REVIEW_STAR; $i++)
+                                        <i class="fa-solid fa-star"></i>
+                                    @endfor
+                                    @for($i = 0; $i < 5 - $data->REVIEW_STAR; $i++)
+                                        <i class="fa-regular fa-star"></i>
+                                    @endfor
+                                @else
+                                        <p class="mb-0">Belum ada rating</p>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-title mb-3">
+                            <i class="fas fa-clipboard-list me-2"></i>Review
+                        </h6>
+                        @if($data->REVIEW != NULL)
+                            <p class="mb-0">{{$data->REVIEW}}</p>
+                        @endif
+                    </div>
+
                     <div class="card-body">
                         <h6 class="text-title mb-3">
                             <i class="fas fa-clipboard-list me-2"></i>Report Content

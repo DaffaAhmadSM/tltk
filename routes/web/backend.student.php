@@ -21,4 +21,5 @@ Route::group(["prefix" => "backend/student", "middleware" => ["auth.web"]], func
 
 Route::group(["prefix" => "student-report", "middleware" => ["auth.web"]], function () {
     Route::match(["get", "post"], "datatables", [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'datatablesStudentsReport']);
+    Route::get("/{id}/detail-modal", [\App\Http\Controllers\Administrator\AdministratorStudentController::class, 'reportDetailModal']);
 });

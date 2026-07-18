@@ -121,4 +121,38 @@ class ApiStudentReportController
             return Helper::composeReply('ERROR', $message, $e->getMessage(), $statusCode);
         }
     }
+
+    public function reviewStudentReport(Request $request, $id)
+    {
+        $report = $this->studentReportService->getReportById($id);
+        if (!$report) {
+            return Helper::composeReply('ERROR', 'Report not found', null, 404);
+        }
+
+        if (!$report['STUDENT'] || $report['STUDENT']['STUDENT_PARENT_U_ID'] != $this->userData->{"U_ID"}) {
+            return Helper::composeReply('ERROR', 'Unauthorized - only the parent can review', null, 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'review_star' => 'required|integer|min:1|max:5',
+            'review' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return Helper::composeReply('ERROR', 'Validation failed', $validator->errors()->all(), 422);
+        }
+
+        $data = [
+            'review_star' => $request->review_star,
+            'review' => $request->review,
+            'SYS_UPDATE_USER' => $this->userData->{"U_ID"},
+        ];
+
+        try {
+            $updated = $this->studentReportService->updateReport($data, $id);
+            return Helper::composeReply('SUCCESS', 'Review submitted successfully', $updated, 200);
+        } catch (\Exception $e) {
+            return Helper::composeReply('ERROR', 'Failed to submit review', $e->getMessage(), 500);
+        }
+    }
 }

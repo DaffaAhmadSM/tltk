@@ -75,6 +75,8 @@ class StudentReportRepository implements StudentReportRepositoryInterface
                 'SR_TITLE' => $report->SR_TITLE,
                 'SR_CONTENT' => $report->SR_CONTENT,
                 'SR_DATE' => $report->SR_DATE,
+                'REVIEW_STAR' => $report->review_star,
+                'REVIEW' => $report->review,
                 'FORMATTED_DATE' => $report->SR_DATE ? \Carbon\Carbon::parse($report->SR_DATE)->format('d-F-Y') : null,
                 'STUDENT' => $report->student ? [
                     'S_ID' => $report->student->S_ID,
@@ -166,6 +168,8 @@ class StudentReportRepository implements StudentReportRepositoryInterface
             'SR_TITLE' => $report->SR_TITLE,
             'SR_CONTENT' => $report->SR_CONTENT,
             'SR_DATE' => $report->SR_DATE,
+            'REVIEW_STAR' => $report->review_star,
+            'REVIEW' => $report->review,
             'FORMATTED_DATE' => $report->SR_DATE ? \Carbon\Carbon::parse($report->SR_DATE)->format('d-F-Y') : null,
             'STUDENT' => $report->student ? [
                 'S_ID' => $report->student->S_ID,
