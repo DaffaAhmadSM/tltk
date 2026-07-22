@@ -27,7 +27,7 @@ class StudentReportRepository implements StudentReportRepositoryInterface
                 $query->select('U_ID', 'U_NAME as TEACHER_NAME');
             },
             'activities' => function ($query) {
-                $query->select('SRA_IuD', 'SR_ID', 'ACTIVITY_NAME')
+                $query->select('SRA_ID', 'SR_ID', 'ACTIVITY_NAME')
                     ->orderBy('SRA_ID');
             },
             'activities.refActivities' => function ($query) {
