@@ -259,6 +259,12 @@ class StudentReportRepository implements StudentReportRepositoryInterface
         if (isset($data['SR_IS_READ'])) {
             $updateData['SR_IS_READ'] = $data['SR_IS_READ'];
         }
+        if (isset($data['review_star'])) {
+            $updateData['review_star'] = $data['review_star'];
+        }
+        if (isset($data['review'])) {
+            $updateData['review'] = $data['review'];
+        }
         return t_student_reports::where('SR_ID', $id)->update($updateData);
     }
 
