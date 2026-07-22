@@ -14,4 +14,5 @@ Route::group(["prefix" => "student-report", "middleware" => ["auth.api"]], funct
 
 
     Route::post("/{id}/review", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'reviewStudentReport']);
+    Route::get("/classroom/{classroom}", [\App\Http\Controllers\Api\ApiStudentReportController::class, 'getStudentsReports']);
 });

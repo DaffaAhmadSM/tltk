@@ -42,7 +42,6 @@
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />--}}
     {{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>--}}
     {{--    --}}
-
     <style>
         :root {
             --sidebar-width: 250px;
@@ -192,6 +191,12 @@
             <a class="nav-link" href="/backend/student">
                 <i class="fas fa-user-graduate"></i>
                 Students
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/backend/laporan">
+                <i class="fas fa-file-alt"></i>
+                Laporan
             </a>
         </li>
     </ul>

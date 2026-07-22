@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
+use App\Models\t_classrooms;
+use App\Models\t_students;
 use App\Services\StudentReportService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -154,5 +156,68 @@ class ApiStudentReportController
         } catch (\Exception $e) {
             return Helper::composeReply('ERROR', 'Failed to submit review', $e->getMessage(), 500);
         }
+    }
+
+
+    public function getStudentsReports(Request $request, int $classroom){
+        $classroom = t_classrooms::where('CLSRM_ID', $classroom)->firstOrFail();
+
+        $year = $request->query('year', date('Y'));
+        $month = $request->query('month', date('n'));
+
+        $students = t_students::where('CLSRM_ID', $classroom->CLSRM_ID)
+            ->with(['reports' => function ($query) use ($year, $month) {
+                $query->whereYear('SR_DATE', $year)
+                    ->whereMonth('SR_DATE', $month)
+                    ->with(['activities' => function ($q) {
+                        $q->with('refActivities');
+                    }]);
+            }])
+            ->get();
+
+        $grouped = [];
+        foreach ($students as $student) {
+            foreach ($student->reports as $report) {
+                $dateKey = \Carbon\Carbon::parse($report->SR_DATE)->format('Y-m-d');
+                $grouped[$dateKey][] = [
+                    'student' => [
+                        'S_ID' => $student->S_ID,
+                        'STUDENT_NAME' => $student->STUDENT_NAME,
+                        'STUDENT_ROLL_NUMBER' => $student->STUDENT_ROLL_NUMBER,
+                    ],
+                    'report' => [
+                        'SR_ID' => $report->SR_ID,
+                        'SR_TITLE' => $report->SR_TITLE,
+                        'SR_CONTENT' => $report->SR_CONTENT,
+                        'SR_DATE' => $report->SR_DATE,
+                        'review_star' => $report->review_star,
+                        'review' => $report->review,
+                        'activities' => $report->activities->map(function ($activity) {
+                            return [
+                                'ACTIVITY_NAME' => $activity->ACTIVITY_NAME,
+                                'REF_ACTIVITIES' => $activity->refActivities->map(function ($ref) {
+                                    return [
+                                        'ACTIVITY_TYPE' => $ref->ACTIVITY_TYPE,
+                                        'ACTIVITY_NAME' => $ref->ACTIVITY_NAME,
+                                        'STATUS' => $ref->STATUS,
+                                    ];
+                                }),
+                            ];
+                        }),
+                    ],
+                ];
+            }
+        }
+
+        return Helper::composeReply('SUCCESS', 'Success get students reports', [
+            'classroom' => [
+                'CLSRM_ID' => $classroom->CLSRM_ID,
+                'CLSRM_NAME' => $classroom->CLSRM_NAME,
+                'CLSRM_GRADE' => $classroom->CLSRM_GRADE,
+            ],
+            'year' => $year,
+            'month' => $month,
+            'reports' => $grouped,
+        ]);
     }
 }

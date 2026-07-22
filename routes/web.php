@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Helper;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -75,3 +76,8 @@ require __DIR__ . '/web/backend.user.php';
 require __DIR__ . '/web/backend.classroom.php';
 require __DIR__ . '/web/backend.student.php';
 
+Route::get('/backend/laporan', function (Request $request) {
+    $this->userData = $request->{"USER_DATA"};
+    $data["profileName"] = $this->userData->{"U_NAME"};
+    return view('backend.laporan.index', $data);
+})->middleware('auth.web');
